@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ybrary", "Ybrary\Ybrary.csproj", "{1AA2A328-118F-4A87-B977-3C1102776223}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1AA2A328-118F-4A87-B977-3C1102776223}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AA2A328-118F-4A87-B977-3C1102776223}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AA2A328-118F-4A87-B977-3C1102776223}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AA2A328-118F-4A87-B977-3C1102776223}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {096F5ED6-6277-4104-A88B-829CEF9AD575}
+	EndGlobalSection
+EndGlobal
