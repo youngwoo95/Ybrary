@@ -76,7 +76,7 @@ namespace Ybrary.Logger
             {
                 DateTime today = DateTime.Now;
 
-                string path = String.Format(@"{0}\\log", Event.Environments.BinDirectory);
+                string path = String.Format(@"{0}\\log", Event.Systems.BinDirectory);
 
                 DirectoryInfo di = new DirectoryInfo(path);
 

@@ -64,15 +64,23 @@ namespace LibTest
             //Console.WriteLine(jarr);
             //Console.WriteLine(jsontest);
 
-            Console.WriteLine(Environments.SystemFolder);
-            Console.WriteLine(Environments.DotNetVersion);
-            Console.WriteLine(Environments.OSVersion);
-            Console.WriteLine(Environments.ComputerName);
-            Console.WriteLine(Environments.UserName);
+            Console.WriteLine(Systems.SystemFolder);
+            Console.WriteLine(Systems.DotNetVersion);
+            Console.WriteLine(Systems.OSVersion);
+            Console.WriteLine(Systems.ComputerName);
+            Console.WriteLine(Systems.UserName);
+            Console.WriteLine(Systems.ProjectName);
+            Console.WriteLine(Systems.ProjectPath);
 
+            Console.WriteLine(Systems.ExePath);
+            Console.WriteLine(Systems.BinDirectory+String.Format(@"{0}.exe",Systems.ProjectName));
 
+            bool test1 = Ybrary.Event.Scheduler.AddScheduler("스케쥴러 테스트");
+            Console.WriteLine(test1);
 
-
+            //bool test2 = Ybrary.Event.Scheduler.DeleteScheduler();
+            //Console.WriteLine(test2);
+            Console.ReadLine();
         }
     }
 }

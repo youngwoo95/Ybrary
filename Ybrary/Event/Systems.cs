@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ybrary.Event
 {
-    public class Environments
+    public class Systems
     {
         /// <summary>
         /// 시스템 폴더 경로
@@ -32,6 +32,11 @@ namespace Ybrary.Event
         public static readonly string UserName = Environment.UserName;
 
         /// <summary>
+        /// 시스템의 도메인 명
+        /// </summary>
+        public static readonly string UserDomainName = Environment.UserDomainName;
+
+        /// <summary>
         /// 현재 폴더
         /// </summary>
         public static readonly string CurrentDirectory = Environment.CurrentDirectory;
@@ -41,5 +46,24 @@ namespace Ybrary.Event
         /// </summary>
         public static readonly string BinDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
+        /// <summary>
+        /// 현재 솔루션 이름구하기
+        /// </summary>
+        public static readonly string ProjectName = System.Reflection.Assembly.GetEntryAssembly().GetName().Name;
+
+        /// <summary>
+        /// 프로젝트 경로 구하기
+        /// </summary>
+        public static readonly string ProjectPath = System.IO.Directory.GetParent(CurrentDirectory).Parent.FullName;
+
+        /// <summary>
+        /// 프로그램 dll 파일 경로
+        /// </summary>
+        public static readonly string DllPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+
+        /// <summary>
+        /// 프로그램 exe 파일 경로
+        /// </summary>
+        public static readonly string ExePath = String.Format(Systems.BinDirectory + String.Format(@"{0}.exe", Systems.ProjectName));
     }
 }

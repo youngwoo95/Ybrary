@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\source\\repos\\Ybrary\\Ybrary\\Ybrary.csproj": {}
+    "C:\\Users\\user\\Documents\\Ybrary\\Ybrary\\Ybrary.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\source\\repos\\Ybrary\\Ybrary\\Ybrary.csproj": {
+    "C:\\Users\\user\\Documents\\Ybrary\\Ybrary\\Ybrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\source\\repos\\Ybrary\\Ybrary\\Ybrary.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Documents\\Ybrary\\Ybrary\\Ybrary.csproj",
         "projectName": "Ybrary",
-        "projectPath": "C:\\Users\\user\\source\\repos\\Ybrary\\Ybrary\\Ybrary.csproj",
+        "projectPath": "C:\\Users\\user\\Documents\\Ybrary\\Ybrary\\Ybrary.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\source\\repos\\Ybrary\\Ybrary\\obj\\",
+        "outputPath": "C:\\Users\\user\\Documents\\Ybrary\\Ybrary\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -54,6 +54,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "TaskScheduler": {
+              "target": "Package",
+              "version": "[2.10.1, )"
             }
           },
           "imports": [
