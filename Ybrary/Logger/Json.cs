@@ -97,7 +97,6 @@ namespace Ybrary.Logger
                     uint uintValue = uint.Parse(contents.ToString());
                     json.Add(title, uintValue);
                     return json;
-                    
                 
                 // Ulong Type Data Input
                 case ValueType.UInt64:

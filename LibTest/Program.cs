@@ -75,11 +75,15 @@ namespace LibTest
             Console.WriteLine(Systems.ExePath);
             Console.WriteLine(Systems.BinDirectory+String.Format(@"{0}.exe",Systems.ProjectName));
 
-            bool test1 = Ybrary.Event.Scheduler.AddScheduler("스케쥴러 테스트");
-            Console.WriteLine(test1);
+            //bool test1 = Ybrary.Event.Scheduler.AddScheduler("스케쥴러 테스트");
+            //Console.WriteLine(test1);
 
             //bool test2 = Ybrary.Event.Scheduler.DeleteScheduler();
             //Console.WriteLine(test2);
+
+            string s = Ybrary.Web.WebControl.RequestURL("http://arong.info:7003/posts");
+
+
             Console.ReadLine();
         }
     }
