@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
+using System.Net.Http.Headers;
 using Ybrary.Event;
+using Ybrary.Web;
 
 namespace LibTest
 {
@@ -81,10 +83,31 @@ namespace LibTest
             //bool test2 = Ybrary.Event.Scheduler.DeleteScheduler();
             //Console.WriteLine(test2);
 
-            string s = Ybrary.Web.WebControl.RequestURL("http://arong.info:7003/posts");
+
+            //Thread th = new Thread(new ThreadStart(Ybrary.Web.WebControl.webtest));
+            //th.IsBackground = true;
+            //th.Start();
 
 
-            Console.ReadLine();
+            //string s = Ybrary.Web.WebControl.RequestURL("http://arong.info:7003/posts");
+            //string s = Ybrary.Web.WebControl.RequestURL("127.0.0.1:80");
+
+            
+            Ybrary.Command.CMD.Command(true, "ipconfig");
+            
+            
+            //Ybrary.Command.CMD.IpConfig(true);
+            
+
+            
+
+
+
+
+
+
         }
+
+     
     }
 }
