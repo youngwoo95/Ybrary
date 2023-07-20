@@ -9,6 +9,7 @@
     ".NETStandard,Version=v2.0/": {
       "Ybrary/1.0.0": {
         "dependencies": {
+          "MQTTnet": "4.2.1.781",
           "NETStandard.Library": "2.0.3",
           "Newtonsoft.Json": "13.0.3",
           "TaskScheduler": "2.10.1"
@@ -30,6 +31,14 @@
           "lib/netstandard2.0/Microsoft.Win32.Registry.dll": {
             "assemblyVersion": "5.0.0.0",
             "fileVersion": "5.0.20.51904"
+          }
+        }
+      },
+      "MQTTnet/4.2.1.781": {
+        "runtime": {
+          "lib/netstandard2.0/MQTTnet.dll": {
+            "assemblyVersion": "4.2.1.781",
+            "fileVersion": "4.2.1.781"
           }
         }
       },
@@ -529,6 +538,13 @@
       "sha512": "sha512-dDoKi0PnDz31yAyETfRntsLArTlVAVzUzCIvvEDsDsucrl33Dl8pIJG06ePTJTI3tGpeyHS9Cq7Foc/s4EeKcg==",
       "path": "microsoft.win32.registry/5.0.0",
       "hashPath": "microsoft.win32.registry.5.0.0.nupkg.sha512"
+    },
+    "MQTTnet/4.2.1.781": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-oKPAoW1Ynukm6ws6P3NmmMlNb3xIlPVf/89WVCkoWOJdz1dYtAdGYRdqe876pVsPru4j0uyU/hKf7iL3NU1r6w==",
+      "path": "mqttnet/4.2.1.781",
+      "hashPath": "mqttnet.4.2.1.781.nupkg.sha512"
     },
     "NETStandard.Library/2.0.3": {
       "type": "package",

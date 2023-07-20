@@ -11,22 +11,32 @@ namespace Ybrary.Web
 {
     public class WebControl
     {
-        public static void RequestURL()
+        /// <summary>
+        /// 웹서버 요청 (Request)
+        /// </summary>
+        public static void RequestURL(string url)
         {
-            string url = "http://localhost:1180";
-
-            Uri uri = new Uri(url);
-            HttpWebRequest wReq = (HttpWebRequest)WebRequest.Create(uri);
-            wReq.Method = "GET";
-
-            using (HttpWebResponse wRes = (HttpWebResponse)wReq.GetResponse())
+            try
             {
-                Stream respPostStream = wRes.GetResponseStream();
-                StreamReader readerPost = new StreamReader(respPostStream, Encoding.GetEncoding("UTF-8"), true);
-                //Console.WriteLine(readerPost.ReadToEnd());
-                Console.WriteLine(readerPost.ReadLine());
-            }
+                //string url = "http://localhost:1180";
 
+                Uri uri = new Uri(url);
+                HttpWebRequest wReq = (HttpWebRequest)WebRequest.Create(uri);
+                wReq.Method = "GET";
+
+                using (HttpWebResponse wRes = (HttpWebResponse)wReq.GetResponse())
+                {
+                    Stream respPostStream = wRes.GetResponseStream();
+                    StreamReader readerPost = new StreamReader(respPostStream, Encoding.GetEncoding("UTF-8"), true);
+                    //Console.WriteLine(readerPost.ReadToEnd());
+                    Console.WriteLine(readerPost.ReadLine());
+                }
+            }catch(Exception ex)
+            {
+#if DEBUG
+                Console.WriteLine(ex.Message);
+#endif
+            }
         }
 
     }

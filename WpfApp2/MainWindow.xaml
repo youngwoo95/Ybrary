@@ -1,0 +1,16 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+        <Button x:Name="btnClient" Content="클릭" Click="btnClient_Click"/>
+        <Button x:Name="btntest2" Content="구독" Click="btntest2_Click"/>
+        <Button x:Name="btnGet" Content="내용" Click="btnGet_Click"/>
+        <Button x:Name="btnSend" Content="내용보내기" Click="btnSend_Click"/>
+    </StackPanel>
+</Window>
