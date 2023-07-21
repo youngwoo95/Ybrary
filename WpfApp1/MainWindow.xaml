@@ -8,6 +8,5 @@
         Loaded="Window_Loaded"
         Title="MainWindow" Height="450" Width="800">
     <StackPanel>
-        <Button x:Name="btnClick" Content="클릭" Click="btnClick_Click"/>
     </StackPanel>
 </Window>

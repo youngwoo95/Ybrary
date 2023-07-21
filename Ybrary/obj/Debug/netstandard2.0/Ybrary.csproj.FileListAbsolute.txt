@@ -18,3 +18,13 @@ C:\Users\user\Documents\Ybrary\Ybrary\obj\Debug\netstandard2.0\Ybrary.AssemblyIn
 C:\Users\user\Documents\Ybrary\Ybrary\obj\Debug\netstandard2.0\Ybrary.csproj.CoreCompileInputs.cache
 C:\Users\user\Documents\Ybrary\Ybrary\obj\Debug\netstandard2.0\Ybrary.dll
 C:\Users\user\Documents\Ybrary\Ybrary\obj\Debug\netstandard2.0\Ybrary.pdb
+C:\Users\rlady\OneDrive\문서\Ybrary\Ybrary\bin\Debug\netstandard2.0\Ybrary.deps.json
+C:\Users\rlady\OneDrive\문서\Ybrary\Ybrary\bin\Debug\netstandard2.0\Ybrary.dll
+C:\Users\rlady\OneDrive\문서\Ybrary\Ybrary\bin\Debug\netstandard2.0\Ybrary.pdb
+C:\Users\rlady\OneDrive\문서\Ybrary\Ybrary\obj\Debug\netstandard2.0\Ybrary.csproj.AssemblyReference.cache
+C:\Users\rlady\OneDrive\문서\Ybrary\Ybrary\obj\Debug\netstandard2.0\Ybrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rlady\OneDrive\문서\Ybrary\Ybrary\obj\Debug\netstandard2.0\Ybrary.AssemblyInfoInputs.cache
+C:\Users\rlady\OneDrive\문서\Ybrary\Ybrary\obj\Debug\netstandard2.0\Ybrary.AssemblyInfo.cs
+C:\Users\rlady\OneDrive\문서\Ybrary\Ybrary\obj\Debug\netstandard2.0\Ybrary.csproj.CoreCompileInputs.cache
+C:\Users\rlady\OneDrive\문서\Ybrary\Ybrary\obj\Debug\netstandard2.0\Ybrary.dll
+C:\Users\rlady\OneDrive\문서\Ybrary\Ybrary\obj\Debug\netstandard2.0\Ybrary.pdb

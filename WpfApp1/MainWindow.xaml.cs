@@ -21,32 +21,30 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        Ybrary.Networks.Sockets.Server server;
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        private string Key = "01235230958230598230512312312398";
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            server = new Ybrary.Networks.Sockets.Server();
-            server.ReceiveHandler += new Ybrary.Networks.Sockets.delSocketServer(MyHanlder);
+            string text = "암호화내용";
+            Console.WriteLine($"원문 : {text}");
+            text = Ybrary.Encry.AES128.Encrypt(text, Key);
+            Console.WriteLine($"암호화 된 문자 : {text}");
 
-            await server.Start(1822);
+            text = Ybrary.Encry.AES128.Decrypt(text, Key);
+            Console.WriteLine($"복호화 된 문자 : {text}");
 
+            Console.WriteLine($"원문 : {text}");
+            text = Ybrary.Encry.AES256.Encrypt(text, Key);
+            Console.WriteLine($"암호화 된 문자 : {text}");
+            text = Ybrary.Encry.AES256.Decrypt(text, Key);
+            Console.WriteLine($"복호화 된 문자 : {text}");
         }
 
-        public string MyHanlder(string message)
-        {
-            Console.WriteLine($"호출된 이벤트 내용 : {message}");
-            return message;   
-        }
-
-        private void btnClick_Click(object sender, RoutedEventArgs e)
-        {
-            server.Stop();
-           
-        }
     }
 }
