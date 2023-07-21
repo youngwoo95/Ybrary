@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Ybrary.Networks.MQTT;
 
 namespace WpfApp1
 {
@@ -20,20 +21,31 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        Ybrary.Networks.Sockets.Server server;
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            server = new Ybrary.Networks.Sockets.Server();
+            server.ReceiveHandler += new Ybrary.Networks.Sockets.delSocketServer(MyHanlder);
+
+            await server.Start(1822);
 
         }
 
-        private async void btnClick_Click(object sender, RoutedEventArgs e)
+        public string MyHanlder(string message)
         {
-            await Ybrary.Networks.MQTT.Server.ServerStart(1882);
+            Console.WriteLine($"호출된 이벤트 내용 : {message}");
+            return message;   
+        }
+
+        private void btnClick_Click(object sender, RoutedEventArgs e)
+        {
+            server.Stop();
            
         }
     }
