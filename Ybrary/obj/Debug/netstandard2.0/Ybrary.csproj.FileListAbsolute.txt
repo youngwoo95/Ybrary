@@ -35,3 +35,10 @@ C:\Users\user\Documents\Ybrary\Ybrary\bin\Debug\netstandard2.0\Accessibility.dll
 C:\Users\user\Documents\Ybrary\Ybrary\bin\Debug\netstandard2.0\System.Deployment.dll
 C:\Users\user\Documents\Ybrary\Ybrary\bin\Debug\netstandard2.0\System.Runtime.Serialization.Formatters.Soap.dll
 C:\Users\user\Documents\Ybrary\Ybrary\obj\Debug\netstandard2.0\Ybrary.csproj.CopyComplete
+C:\Users\rlady\OneDrive\문서\Ybrary\Ybrary\bin\Debug\netstandard2.0\System.Windows.Forms.dll
+C:\Users\rlady\OneDrive\문서\Ybrary\Ybrary\bin\Debug\netstandard2.0\System.Security.dll
+C:\Users\rlady\OneDrive\문서\Ybrary\Ybrary\bin\Debug\netstandard2.0\System.Configuration.dll
+C:\Users\rlady\OneDrive\문서\Ybrary\Ybrary\bin\Debug\netstandard2.0\Accessibility.dll
+C:\Users\rlady\OneDrive\문서\Ybrary\Ybrary\bin\Debug\netstandard2.0\System.Deployment.dll
+C:\Users\rlady\OneDrive\문서\Ybrary\Ybrary\bin\Debug\netstandard2.0\System.Runtime.Serialization.Formatters.Soap.dll
+C:\Users\rlady\OneDrive\문서\Ybrary\Ybrary\obj\Debug\netstandard2.0\Ybrary.csproj.CopyComplete

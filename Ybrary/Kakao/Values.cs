@@ -37,9 +37,12 @@ namespace Ybrary.Kakao
         public static string RedirectUrl = "https://www.naver.com/oauth";
 
         /// <summary>
-        /// 로그인 URL
+        /// 친구목록 정보 얻기
         /// </summary>
-        public static string LogInUrl = "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=" + RestApiKey + "&redirect_uri=" + RedirectUrl;
+        //public static string LogInUrl = "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=" + RestApiKey + "&redirect_uri=" + RedirectUrl + "&response_type=code&scope=talk_message,friends";
+
+        // 사용자 정보얻기
+        public static string LogInUrl = "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=" + RestApiKey + "&redirect_uri=" + RedirectUrl + "&scope=talk_message,friends";
 
         /// <summary>
         /// 루트 URL
@@ -74,7 +77,7 @@ namespace Ybrary.Kakao
         /// 사용자 데이터 커맨드
         /// </summary>
         public static string UserDataUrlCommand = "/v2/user/me";
-
+        //public static string UserDataUrlCommand = "/v1/api/talk/profile";
         /// <summary>
         /// 친구 데이터 커맨드
         /// </summary>

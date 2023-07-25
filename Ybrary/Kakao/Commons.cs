@@ -218,7 +218,7 @@ namespace Ybrary.Kakao
         {
             var client = new RestClient(Values.HostApiUrl);
             
-            var request = new RestRequest(Values.FriendsDataUrlCommand);
+            var request = new RestRequest("v1/api/talk/friends");
             
             request.AddHeader("Authorization", "bearer " + UserModel.AccessToken);
 
