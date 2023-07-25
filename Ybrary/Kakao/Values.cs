@@ -78,8 +78,8 @@ namespace Ybrary.Kakao
         /// <summary>
         /// 친구 데이터 커맨드
         /// </summary>
-        public static string FriendsDataUrlCommand = "/v1/api/talk/frineds";
-
+        //public static string FriendsDataUrlCommand = "v1/api/talk/frineds";
+        public static string FriendsDataUrlCommand = "v1/api/talk/friends";
         #endregion
 
 

@@ -217,14 +217,16 @@ namespace Ybrary.Kakao
         public void GetFriendsData()
         {
             var client = new RestClient(Values.HostApiUrl);
-
+            
             var request = new RestRequest(Values.FriendsDataUrlCommand);
+            
             request.AddHeader("Authorization", "bearer " + UserModel.AccessToken);
 
             IRestResponse restResponse = client.Execute(request);
             Console.WriteLine(restResponse.Content);
-
         }
+
+
         
 
 
