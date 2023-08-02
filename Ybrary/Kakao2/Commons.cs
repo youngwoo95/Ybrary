@@ -2,9 +2,12 @@
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using System.Net;
 using System.Text;
 using System.Windows.Forms;
+using Ybrary.Networks.MQTT;
 
 namespace Ybrary.Kakao2
 {
@@ -93,6 +96,71 @@ namespace Ybrary.Kakao2
                 }
             }
         }
+
+        /// <summary>
+        /// 로그아웃
+        /// </summary>
+        /// <returns></returns>
+        public bool LotOut()
+        {
+            var client = new RestClient(Ybrary.Kakao2.Values.KapiUrl);
+
+            var request = new RestRequest(Ybrary.Kakao2.Values.UnlinkTokenCommand, Method.POST);
+            request.AddHeader("Authorization", "bearer " + UserModel.AccessToken);
+
+            if (client.Execute(request).IsSuccessful)
+            {
+                Console.WriteLine($"로그아웃 성공 {UserModel.AccessToken}");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("로그아웃 실패");
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 사용자 정보 얻기
+        /// </summary>
+        public void GetUserData()
+        {
+            var client = new RestClient(Ybrary.Kakao2.Values.KapiUrl);
+
+            var request = new RestRequest(Ybrary.Kakao2.Values.GetUserDataTokenCommand, Method.GET);
+            request.AddHeader("Authorization", "bearer " + UserModel.AccessToken);
+
+            var response = client.Execute(request);
+            var json = JObject.Parse(response.Content);
+
+            if (json["properties"]["profile_image"] != null)
+            {
+                string UserImg = json["properties"]["profile_image"].ToString();
+                UserModel.UserProfileImg = WebImageView(UserImg);
+            }
+
+            UserModel.UserName = json["properties"]["nickname"].ToString();
+        }
+
+        private static Bitmap WebImageView(string url)
+        {
+            try
+            {
+                using(WebClient Downloader = new WebClient())
+                using (Stream ImageStream = Downloader.OpenRead(url))
+                {
+                    Bitmap DownloadImage = Bitmap.FromStream(ImageStream) as Bitmap;
+
+                    Console.WriteLine("이미지 다운로드 성공");
+                    return DownloadImage;
+                }
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
 
     }
 }

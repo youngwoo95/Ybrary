@@ -12,17 +12,22 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button x:Name="btnSetUserToken" Grid.Column="0" Content="사용자 토큰 생성" Click="btnSetUserToken_Click"/>
             <Button x:Name="btnGetUserToken" Grid.Column="1" Content="사용자 토큰 얻기" Click="btnGetUserToken_Click"/>
+            <Button x:Name="btnLogOut" Grid.Column="2" Content="로그아웃" Click="btnLogOut_Click"/>
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <!-- 유저 프로필사진 -->
-            <Button x:Name="btnGetProfile" Grid.Column="1" Content="내정보 얻기"/>
+            
+            <Image x:Name="imgProfile" Grid.Column="0"/>
+            <TextBlock x:Name="txtName" Grid.Column="1"/>
+            <Button x:Name="btnGetProfile" Grid.Column="2" Content="내정보 얻기" Click="btnGetProfile_Click"/>
         </Grid>
 
         <Grid>

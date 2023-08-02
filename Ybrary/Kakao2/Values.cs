@@ -51,12 +51,26 @@ namespace Ybrary.Kakao2
         /// </summary>
         public static string KauthUrl = "https://kauth.kakao.com";
 
+        /// <summary>
+        /// 로그아웃 URL
+        /// </summary>
+        public static string KapiUrl = "https://kapi.kakao.com";
 
         #region COMMAND
         /// <summary>
         /// 엑세스 토큰 명령어
         /// </summary>
         public static string AccessTokenCommand = "/oauth/token";
+
+        /// <summary>
+        /// 로그아웃 토큰 명령어
+        /// </summary>
+        public static string UnlinkTokenCommand = "/v1/user/unlink";
+
+        /// <summary>
+        /// 사용자 정보 토큰 명령어
+        /// </summary>
+        public static string GetUserDataTokenCommand = "/v2/user/me";
 
         #endregion
     }

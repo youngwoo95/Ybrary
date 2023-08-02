@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Ybrary.Kakao.Models;
 
 namespace KakaoTest2
 {
@@ -53,6 +56,29 @@ namespace KakaoTest2
             Comm.GetAccessToken();
         }
 
-    
+        /// <summary>
+        /// 로그아웃
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnLogOut_Click(object sender, RoutedEventArgs e)
+        {
+            Comm.LotOut();
+        }
+
+        /// <summary>
+        /// 사용자 프로필 얻기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnGetProfile_Click(object sender, RoutedEventArgs e)
+        {
+            Comm.GetUserData();
+            // 프로필 사진 구현
+            txtName.Text = Ybrary.Kakao2.UserModel.UserName;
+            
+        }
+
+     
     }
 }
