@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using Ybrary.Networks.MQTT;
 
 namespace Ybrary.Kakao2
@@ -40,6 +42,11 @@ namespace Ybrary.Kakao2
             }
         }
 
+        /// <summary>
+        /// 친구 메시지 토큰 얻기
+        /// </summary>
+        /// <param name="webBrowser"></param>
+        /// <returns></returns>
         public bool GetFriendsToken(WebBrowser webBrowser)
         {
             string url = webBrowser.Url.ToString();
@@ -48,7 +55,7 @@ namespace Ybrary.Kakao2
             if(url.CompareTo(Ybrary.Kakao2.Values.RedirectUrl +"?code="+friendsToken) == 0)
             {
                 Console.WriteLine($"친구 토큰 얻기 성공 {friendsToken}");
-                Ybrary.Kakao2.UserModel.UserToken = friendsToken;
+                Ybrary.Kakao2.FriendsModel.FriendsToken = friendsToken;
                 return true;
             }
             else
@@ -96,6 +103,35 @@ namespace Ybrary.Kakao2
             File.WriteAllText(filepath, json.ToString());
         }
 
+        public void SetFrinedsAccessToken()
+        {
+            var client = new RestClient(Kakao2.Values.KauthUrl);
+
+            var request = new RestRequest(Kakao2.Values.AccessTokenCommand, Method.POST);
+            request.AddParameter("grant_type", "authorization_code");
+            request.AddParameter("client_id", Kakao2.Values.RestAPIKey);
+            request.AddParameter("redirect_uri", Kakao2.Values.RedirectUrl);
+            request.AddParameter("code", Ybrary.Kakao2.FriendsModel.FriendsToken);
+
+            IRestResponse restResponse = client.Execute(request);
+            var json = JObject.Parse(restResponse.Content);
+
+            // 토큰 폴더 생성
+            folderpath = String.Format(@"{0}{1}", BaseDirectory, "token");
+            DirectoryInfo di = new DirectoryInfo(folderpath);
+            if (!di.Exists)
+            {
+                di.Create();
+            }
+            filepath = String.Format(@"{0}\\Friendstoken.txt", folderpath);
+            if (!File.Exists(filepath))
+            {
+                using (File.Create(filepath)) { }
+            }
+
+            File.WriteAllText(filepath, json.ToString());
+        }
+
         /// <summary>
         /// 생성된 엑세스 토큰 파일에서 엑세스토큰 얻기
         /// </summary>
@@ -112,11 +148,31 @@ namespace Ybrary.Kakao2
 
                     Console.WriteLine((string)acctoken["access_token"].ToString());
                     UserModel.AccessToken = (string)acctoken["access_token"].ToString();
-
                 }
             }
         }
 
+        /// <summary>
+        /// 생성된 친구 엑세스 토큰 파일에서 엑세스 토큰 얻기
+        /// </summary>
+        public void GetFriendsAccessToken()
+        {
+            if (File.Exists(filepath))
+            {
+                Console.WriteLine($"친구 토큰 파일 경로 {filepath}");
+
+                using (StreamReader sr = File.OpenText(filepath))
+                {
+                    string contents = sr.ReadToEnd();
+                    JObject acctoken = JObject.Parse(contents);
+
+                    Console.WriteLine((string)acctoken["access_token"].ToString());
+                    FriendsModel.AccessToken = (string)acctoken["access_token"].ToString();
+                }
+            }
+        }
+
+        
         /// <summary>
         /// 로그아웃
         /// </summary>
@@ -206,6 +262,11 @@ namespace Ybrary.Kakao2
             }
         }
 
+        /// <summary>
+        /// 커스텀 메시지 보내기
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public bool CustomeMessageSend(string message)
         {
             var client = new RestClient(Values.KapiUrl);
@@ -236,9 +297,77 @@ namespace Ybrary.Kakao2
                 Console.WriteLine("메시지 보내기 실패");
                 return false;
             }
+        }
+
+        /// <summary>
+        /// 친구목록 가져오기
+        /// </summary>
+        public void GetFriendsList()
+        {
+            var client = new RestClient(Values.KapiUrl);
+
+            var request = new RestRequest(Values.FriendsListCommand);
+
+            request.AddHeader("Authorization", "bearer " + FriendsModel.AccessToken);
+
+            IRestResponse restResponse = client.Execute(request);
+            var json = JObject.Parse(restResponse.Content);
+            Console.WriteLine(json.ToString());
+            
+            //if (json["elements"][0]["uuid"] != null)
+            {
+                //string UserImg = json["properties"]["profile_image"].ToString();
+                //UserModel.UserProfileImg = WebImageView(UserImg);
+            }
+
+            FriendsModel.UUID = json["elements"][0]["uuid"].ToString();
+            Console.WriteLine(FriendsModel.UUID);
+        }
+        
+        /// <summary>
+        /// 친구에게 메시지 보내기
+        /// </summary>
+        /// <param name="message"></param>
+        public void SendFriendsMessage(string message)
+        {
+            var client = new RestClient(Values.KapiUrl);
+
+            var request = new RestRequest(Values.FriendsMessageUrlCommand,Method.POST);
+            request.AddHeader("Authorization", "Bearer " + FriendsModel.AccessToken);
+            
+            string s = $"[\"{FriendsModel.UUID}\"]";
+            request.AddParameter("receiver_uuids", $"{s}");
+
+            JObject JobjSet = new JObject();
+
+            JObject JobjLink = new JObject();
+            JobjLink.Add("web_url", "https://www.s-tec.co.kr");
+            //JobjLink.Add("web_url", "https://www.naver.co.kr");
+            
+
+            JobjSet.Add("object_type", "text");
+            JobjSet.Add("text", message);
+            JobjSet.Add("link", JobjLink);
+            JobjSet.Add("button_title", "확인하기");
+            request.AddParameter("template_object", JobjSet);
+            
+
+            if (client.Execute(request).IsSuccessful)
+            {
+                Console.WriteLine("메세지 보내기 성공");
+            }
+            else
+            {
+                Console.WriteLine("실패");
+            }
+
+
+
 
         }
 
-
     }
+
+
+    
 }

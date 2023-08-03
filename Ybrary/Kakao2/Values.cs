@@ -87,6 +87,16 @@ namespace Ybrary.Kakao2
         /// </summary>
         public static string DefaultMessageUrlCommand = "/v2/api/talk/memo/default/send";
 
+        /// <summary>
+        /// 친구목록 가져오기
+        /// </summary>
+        public static string FriendsListCommand = "/v1/api/talk/friends";
+
+        /// <summary>
+        /// 친구 메시지 커맨드
+        /// </summary>
+        public static string FriendsMessageUrlCommand = "/v1/api/talk/friends/message/default/send";
+
         #endregion
     }
 }

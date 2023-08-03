@@ -728,23 +728,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\user\\.nuget\\packages\\": {},
+    "C:\\Users\\rlady\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\Documents\\Ybrary\\WpfApp2\\WpfApp2.csproj",
+      "projectUniqueName": "C:\\Users\\rlady\\OneDrive\\문서\\Ybrary\\WpfApp2\\WpfApp2.csproj",
       "projectName": "WpfApp2",
-      "projectPath": "C:\\Users\\user\\Documents\\Ybrary\\WpfApp2\\WpfApp2.csproj",
-      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\Documents\\Ybrary\\WpfApp2\\obj\\",
+      "projectPath": "C:\\Users\\rlady\\OneDrive\\문서\\Ybrary\\WpfApp2\\WpfApp2.csproj",
+      "packagesPath": "C:\\Users\\rlady\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rlady\\OneDrive\\문서\\Ybrary\\WpfApp2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rlady\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -760,8 +760,8 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\user\\Documents\\Ybrary\\Ybrary\\Ybrary.csproj": {
-              "projectPath": "C:\\Users\\user\\Documents\\Ybrary\\Ybrary\\Ybrary.csproj"
+            "C:\\Users\\rlady\\OneDrive\\문서\\Ybrary\\Ybrary\\Ybrary.csproj": {
+              "projectPath": "C:\\Users\\rlady\\OneDrive\\문서\\Ybrary\\Ybrary\\Ybrary.csproj"
             }
           }
         }
@@ -794,7 +794,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

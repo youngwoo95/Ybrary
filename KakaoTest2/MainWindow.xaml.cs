@@ -44,6 +44,7 @@ namespace KakaoTest2
         private void btnSetUserToken_Click(object sender, RoutedEventArgs e)
         {
             LoginPage login = new LoginPage();
+            login.type = 1;
             login.tokenType = Ybrary.Kakao2.Values.OauthHost;
             login.ShowDialog();
         }
@@ -56,6 +57,7 @@ namespace KakaoTest2
         private void btnSetFriendsToken_Click(object sender, RoutedEventArgs e)
         {
             LoginPage login = new LoginPage();
+            login.type = 2;
             login.tokenType = Ybrary.Kakao2.Values.FriendsOauthHost;
             login.ShowDialog();
         }
@@ -69,6 +71,14 @@ namespace KakaoTest2
         {
             Comm.GetAccessToken();
         }
+
+        private void btnGetFriendsToken_Click(object sender, RoutedEventArgs e)
+        {
+            Comm.GetFriendsAccessToken();
+        }
+
+
+      
 
         /// <summary>
         /// 로그아웃
@@ -117,11 +127,15 @@ namespace KakaoTest2
             txtMessage.Clear();
         }
 
-       
-
-        private void btnGetFriendsToken_Click(object sender, RoutedEventArgs e)
+        private void btnGetFriendsList_Click(object sender, RoutedEventArgs e)
         {
+            Comm.GetFriendsList();
+        }
 
+        private void btnSendFriendsMessage_Click(object sender, RoutedEventArgs e)
+        {
+            Comm.SendFriendsMessage(txtFriendsMessage.Text);
+            txtFriendsMessage.Clear();
         }
     }
 }

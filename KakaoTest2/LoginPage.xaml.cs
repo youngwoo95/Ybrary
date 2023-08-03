@@ -20,6 +20,8 @@ namespace KakaoTest2
     /// </summary>
     public partial class LoginPage : Window
     {
+        public int type { get; set; }
+
         public string tokenType { get; set; }
         
         System.Windows.Forms.WebBrowser wb;
@@ -47,11 +49,25 @@ namespace KakaoTest2
 
         private void DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            if(MainWindow.Comm.GetUserToken(wb))
+            switch (type)
             {
-                MainWindow.Comm.SetAccessToken();
-                this.Close();
+                case 1:
+                    if (MainWindow.Comm.GetUserToken(wb))
+                    {
+                        MainWindow.Comm.SetAccessToken();
+                        this.Close();
+                    }
+                    break;
+                case 2:
+                    if (MainWindow.Comm.GetFriendsToken(wb))
+                    {
+                        MainWindow.Comm.SetFrinedsAccessToken();
+                        this.Close();
+                    }
+                    break;
             }
+
+            
         }
     }
 }

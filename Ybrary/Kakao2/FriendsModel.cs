@@ -23,6 +23,11 @@ namespace Ybrary.Kakao2
         public static string UserName { get; set; }
 
         /// <summary>
+        /// UUID - 메시지 보낼때 사용됨
+        /// </summary>
+        public static string UUID { get; set; }
+
+        /// <summary>
         /// 친구 프로필 이미지
         /// </summary>
         public static Bitmap UserProfileImg { get; set; }
