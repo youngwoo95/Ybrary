@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Ybrary.Kakao.Models;
+using Ybrary.Kakao2;
 
 namespace KakaoTest2
 {
@@ -43,6 +44,19 @@ namespace KakaoTest2
         private void btnSetUserToken_Click(object sender, RoutedEventArgs e)
         {
             LoginPage login = new LoginPage();
+            login.tokenType = Ybrary.Kakao2.Values.OauthHost;
+            login.ShowDialog();
+        }
+
+        /// <summary>
+        /// 친구 토큰 생성
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSetFriendsToken_Click(object sender, RoutedEventArgs e)
+        {
+            LoginPage login = new LoginPage();
+            login.tokenType = Ybrary.Kakao2.Values.FriendsOauthHost;
             login.ShowDialog();
         }
 
@@ -103,10 +117,7 @@ namespace KakaoTest2
             txtMessage.Clear();
         }
 
-        private void btnSetFriendsToken_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
 
         private void btnGetFriendsToken_Click(object sender, RoutedEventArgs e)
         {

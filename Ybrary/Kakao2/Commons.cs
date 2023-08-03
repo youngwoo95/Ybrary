@@ -40,6 +40,23 @@ namespace Ybrary.Kakao2
             }
         }
 
+        public bool GetFriendsToken(WebBrowser webBrowser)
+        {
+            string url = webBrowser.Url.ToString();
+            string friendsToken = url.Substring(url.IndexOf("=") + 1);
+
+            if(url.CompareTo(Ybrary.Kakao2.Values.RedirectUrl +"?code="+friendsToken) == 0)
+            {
+                Console.WriteLine($"친구 토큰 얻기 성공 {friendsToken}");
+                Ybrary.Kakao2.UserModel.UserToken = friendsToken;
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("친구 토큰 얻기 실패");
+                return false;
+            }
+        }
         
 
 

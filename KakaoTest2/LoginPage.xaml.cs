@@ -20,12 +20,16 @@ namespace KakaoTest2
     /// </summary>
     public partial class LoginPage : Window
     {
+        public string tokenType { get; set; }
+        
         System.Windows.Forms.WebBrowser wb;
 
         public LoginPage()
         {
             InitializeComponent();
         }
+        
+        // 토큰타입
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -36,7 +40,9 @@ namespace KakaoTest2
             webBrowser1.Child = wb;
             wb.DocumentCompleted += DocumentCompleted;
             wb.ScriptErrorsSuppressed = true; // 스크립트 에러 제거
-            wb.Navigate(Ybrary.Kakao2.Values.OauthHost); // 사용자 코드 URL 설정
+
+            // 이 아래부분 ShowDialog 하면서 넘겨야할듯
+            wb.Navigate(tokenType); // 사용자 코드 URL 설정
         }
 
         private void DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
