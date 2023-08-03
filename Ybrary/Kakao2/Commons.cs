@@ -321,7 +321,7 @@ namespace Ybrary.Kakao2
             }
 
             FriendsModel.UUID = json["elements"][0]["uuid"].ToString();
-            Console.WriteLine(FriendsModel.UUID);
+            //Console.WriteLine(FriendsModel.UUID);
         }
         
         /// <summary>
