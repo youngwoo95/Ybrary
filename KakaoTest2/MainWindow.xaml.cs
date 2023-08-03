@@ -75,10 +75,42 @@ namespace KakaoTest2
         {
             Comm.GetUserData();
             // 프로필 사진 구현
+
+            //imgProfile.Source = new Uri(Ybrary.Kakao2.UserModel.UserProfileImg)
+
             txtName.Text = Ybrary.Kakao2.UserModel.UserName;
             
         }
 
-     
+        /// <summary>
+        /// 나에게 커스텀 메시지 보내기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSendMyTemplateMessage_Click(object sender, RoutedEventArgs e)
+        {
+            Comm.TemplateMessageSend(txtMessage.Text);
+        }
+
+        /// <summary>
+        /// 나에게 기본 메시지 보내기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSendMyDefaultMessage_Click(object sender, RoutedEventArgs e)
+        {
+            Comm.CustomeMessageSend(txtMessage.Text);
+            txtMessage.Clear();
+        }
+
+        private void btnSetFriendsToken_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnGetFriendsToken_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

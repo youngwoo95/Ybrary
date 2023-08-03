@@ -47,6 +47,11 @@ namespace Ybrary.Kakao2
         public static string OauthHost = $"https://kauth.kakao.com/oauth/authorize?client_id={RestAPIKey}&redirect_uri={RedirectUrl}&response_type=code";
 
         /// <summary>
+        /// 친구 인증코드 요청 Url
+        /// </summary>
+        public static string FriendsOauthHost = $"https://kauth.kakao.com/oauth/authorize?client_id={RestAPIKey}&redirect_uri={RedirectUrl}&response_type=code&scope=talk_message,friends";
+
+        /// <summary>
         /// 엑세스 인증 URL
         /// </summary>
         public static string KauthUrl = "https://kauth.kakao.com";
@@ -71,6 +76,16 @@ namespace Ybrary.Kakao2
         /// 사용자 정보 토큰 명령어
         /// </summary>
         public static string GetUserDataTokenCommand = "/v2/user/me";
+
+        /// <summary>
+        /// 템플릿 메시지 커맨드
+        /// </summary>
+        public static string TemplateMessageUrlCommand = "/v2/api/talk/memo/send";
+
+        /// <summary>
+        /// 기본 메시지 커맨드
+        /// </summary>
+        public static string DefaultMessageUrlCommand = "/v2/api/talk/memo/default/send";
 
         #endregion
     }

@@ -29,17 +29,20 @@ namespace Ybrary.Kakao2
             // 웹브라우저 상 URL 과 지정한 토큰 URL이 같을경우
             if(url.CompareTo(Ybrary.Kakao2.Values.RedirectUrl +"?code="+userToken) == 0)
             {
-                Console.WriteLine($"유저 토큰 얻기 성공 {userToken}");
+                Console.WriteLine($"사용자 토큰 얻기 성공 {userToken}");
                 Ybrary.Kakao2.UserModel.UserToken = userToken;
                 return true;
             }
             else
             {
-                Console.WriteLine("유저 토큰 얻기 실패");
+                Console.WriteLine("사용자 토큰 얻기 실패");
                 return false;
             }
-
         }
+
+        
+
+
         string folderpath;
         string filepath;
         /// <summary>
@@ -159,6 +162,64 @@ namespace Ybrary.Kakao2
                 Console.WriteLine(ex.Message);
                 return null;
             }
+        }
+
+        /// <summary>
+        /// 템플릿 메시지 보내기
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public bool TemplateMessageSend(string message)
+        {
+            var client = new RestClient(Values.KapiUrl);
+
+            var request = new RestRequest(Values.TemplateMessageUrlCommand, Method.POST);
+            request.AddHeader("Authorization", "bearer " + Ybrary.Kakao2.UserModel.AccessToken);
+            request.AddParameter("template_id", Ybrary.Kakao2.Values.TemplateID);
+
+            if (client.Execute(request).IsSuccessful)
+            {
+                Console.WriteLine("메시지 보내기 성공");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("메시지 보내기 실패");
+                return false;
+            }
+        }
+
+        public bool CustomeMessageSend(string message)
+        {
+            var client = new RestClient(Values.KapiUrl);
+
+            var request = new RestRequest(Values.DefaultMessageUrlCommand, Method.POST);
+            request.AddHeader("Authorization", "bearer " + UserModel.AccessToken);
+
+            JObject JobjSet = new JObject();
+
+            JObject JobjLink = new JObject();
+            JobjLink.Add("web_url", "https://www.s-tec.co.kr");
+            JobjLink.Add("mobile_web_url", "https://www.s-tec.co.kr");
+
+            JobjSet.Add("object_type", "text");
+            JobjSet.Add("text", "[설정할 알림의 타이틀]");
+            JobjSet.Add("link", JobjLink);
+            JobjSet.Add("button_title", message);
+
+            request.AddParameter("template_object", JobjSet);
+
+            if (client.Execute(request).IsSuccessful)
+            {
+                Console.WriteLine("메시지 보내기 성공");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("메시지 보내기 실패");
+                return false;
+            }
+
         }
 
 

@@ -34,11 +34,22 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0"/>
-            <Button x:Name="btnSendMyTemplateMessage" Grid.Column="1" Content="나에게 템플릿 메시지 보내기"/>
+            <TextBox x:Name="txtMessage" Grid.Column="0"/>
+            <Button x:Name="btnSendMyTemplateMessage" Grid.Column="1" Content="나에게 템플릿 메시지 보내기" Click="btnSendMyTemplateMessage_Click"/>
+            <Button x:Name="btnSendMyDefaultMessage" Grid.Column="2" Content="나에게 기본 메시지 보내기" Click="btnSendMyDefaultMessage_Click"/>
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnSetFriendsToken" Grid.Column="0" Content="친구 토큰 생성" Click="btnSetFriendsToken_Click"/>
+            <Button x:Name="btnGetFriendsToken" Grid.Column="1" Content="친구 토큰 얻기" Click="btnGetFriendsToken_Click"/>
         </Grid>
         
-        
+
     </StackPanel>
 </Window>
