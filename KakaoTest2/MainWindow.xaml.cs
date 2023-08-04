@@ -25,7 +25,7 @@ namespace KakaoTest2
     public partial class MainWindow : Window
     {
         public static Ybrary.Kakao2.Commons Comm;
-
+        List<FriendsModel> friendslist;
         public MainWindow()
         {
             InitializeComponent();
@@ -127,14 +127,24 @@ namespace KakaoTest2
             txtMessage.Clear();
         }
 
+        /// <summary>
+        /// 친구목록 가져오기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnGetFriendsList_Click(object sender, RoutedEventArgs e)
         {
-            Comm.GetFriendsList();
+            friendslist = Comm.GetFriendsList();
         }
 
+        /// <summary>
+        /// 친구에게 메시지 보내기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSendFriendsMessage_Click(object sender, RoutedEventArgs e)
         {
-            Comm.SendFriendsMessage(txtFriendsMessage.Text);
+            Comm.SendFriendsMessage(friendslist[1].UUID, txtFriendsMessage.Text);
             txtFriendsMessage.Clear();
         }
     }

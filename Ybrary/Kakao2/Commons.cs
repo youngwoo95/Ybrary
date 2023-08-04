@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -55,7 +56,7 @@ namespace Ybrary.Kakao2
             if(url.CompareTo(Ybrary.Kakao2.Values.RedirectUrl +"?code="+friendsToken) == 0)
             {
                 Console.WriteLine($"친구 토큰 얻기 성공 {friendsToken}");
-                Ybrary.Kakao2.FriendsModel.FriendsToken = friendsToken;
+                Ybrary.Kakao2.UserModel.FriendsToken = friendsToken;
                 return true;
             }
             else
@@ -111,7 +112,7 @@ namespace Ybrary.Kakao2
             request.AddParameter("grant_type", "authorization_code");
             request.AddParameter("client_id", Kakao2.Values.RestAPIKey);
             request.AddParameter("redirect_uri", Kakao2.Values.RedirectUrl);
-            request.AddParameter("code", Ybrary.Kakao2.FriendsModel.FriendsToken);
+            request.AddParameter("code", Ybrary.Kakao2.UserModel.FriendsToken);
 
             IRestResponse restResponse = client.Execute(request);
             var json = JObject.Parse(restResponse.Content);
@@ -167,7 +168,7 @@ namespace Ybrary.Kakao2
                     JObject acctoken = JObject.Parse(contents);
 
                     Console.WriteLine((string)acctoken["access_token"].ToString());
-                    FriendsModel.AccessToken = (string)acctoken["access_token"].ToString();
+                    UserModel.FriendsAccessToken = (string)acctoken["access_token"].ToString();
                 }
             }
         }
@@ -302,40 +303,59 @@ namespace Ybrary.Kakao2
         /// <summary>
         /// 친구목록 가져오기
         /// </summary>
-        public void GetFriendsList()
+        public List<FriendsModel> GetFriendsList()
         {
             var client = new RestClient(Values.KapiUrl);
 
             var request = new RestRequest(Values.FriendsListCommand);
 
-            request.AddHeader("Authorization", "bearer " + FriendsModel.AccessToken);
+            request.AddHeader("Authorization", "bearer " + UserModel.FriendsAccessToken);
 
             IRestResponse restResponse = client.Execute(request);
             var json = JObject.Parse(restResponse.Content);
             Console.WriteLine(json.ToString());
-            
-            //if (json["elements"][0]["uuid"] != null)
+
+            List<FriendsModel> friendsList = new List<FriendsModel>();
+
+            for(int i = 0; i < json["elements"].Count(); i++)
             {
-                //string UserImg = json["properties"]["profile_image"].ToString();
-                //UserModel.UserProfileImg = WebImageView(UserImg);
+                /*
+                if (json["elements"][i]["profile_thumbnail_image"] != null)
+                {
+                    image = WebImageView(json["elements"][i]["profile_thumbnail_image"].ToString());
+                }
+                */
+                friendsList.Add(new FriendsModel()
+                {
+                    UserName = json["elements"][i]["profile_nickname"].ToString(),
+                    UserId = json["elements"][i]["id"].ToString(),
+                    UUID = json["elements"][i]["uuid"].ToString()
+                });
             }
 
-            FriendsModel.UUID = json["elements"][0]["uuid"].ToString();
-            //Console.WriteLine(FriendsModel.UUID);
+            foreach(var item in friendsList)
+            {
+                Console.WriteLine($"이름 : {item.UserName}");
+                Console.WriteLine($"ID : {item.UserId}");
+                Console.WriteLine($"UUID : {item.UUID}");
+            }
+
+            return friendsList;
         }
         
         /// <summary>
         /// 친구에게 메시지 보내기
         /// </summary>
         /// <param name="message"></param>
-        public void SendFriendsMessage(string message)
+        public bool SendFriendsMessage(string targetuuid,string message)
         {
+            
             var client = new RestClient(Values.KapiUrl);
 
             var request = new RestRequest(Values.FriendsMessageUrlCommand,Method.POST);
-            request.AddHeader("Authorization", "Bearer " + FriendsModel.AccessToken);
+            request.AddHeader("Authorization", "Bearer " + UserModel.FriendsAccessToken);
             
-            string s = $"[\"{FriendsModel.UUID}\"]";
+            string s = $"[\"{targetuuid}\"]";
             request.AddParameter("receiver_uuids", $"{s}");
 
             JObject JobjSet = new JObject();
@@ -355,19 +375,17 @@ namespace Ybrary.Kakao2
             if (client.Execute(request).IsSuccessful)
             {
                 Console.WriteLine("메세지 보내기 성공");
+                return true;
             }
             else
             {
                 Console.WriteLine("실패");
+                return false;
             }
-
+            
 
 
 
         }
-
     }
-
-
-    
 }

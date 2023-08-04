@@ -4,20 +4,16 @@
 exe
 C#
 .cs
-C:\Users\rlady\OneDrive\문서\Ybrary\KakaoTest2\obj\Debug\net6.0-windows\
+C:\Users\user\Documents\Ybrary\KakaoTest2\obj\Debug\net6.0-windows\
 KakaoTest2
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\rlady\OneDrive\문서\Ybrary\KakaoTest2\App.xaml
+C:\Users\user\Documents\Ybrary\KakaoTest2\App.xaml
 2-1789095670
 
 6516552841
-<<<<<<< HEAD
-2081770277729
-=======
-204-1117179117
->>>>>>> main
+208-1423731029
 LoginPage.xaml;MainWindow.xaml;
 
 True

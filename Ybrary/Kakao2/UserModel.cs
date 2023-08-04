@@ -26,5 +26,15 @@ namespace Ybrary.Kakao2
         /// 사용자 프로필 이미지
         /// </summary>
         public static Bitmap UserProfileImg { get; set; }
+
+        /// <summary>
+        /// 친구 토큰
+        /// </summary>
+        public static string FriendsToken { get; set; }
+
+        /// <summary>
+        /// 친구 엑세스 토큰
+        /// </summary>
+        public static string FriendsAccessToken { get; set; }
     }
 }
