@@ -98,5 +98,40 @@ namespace Ybrary.Kakao2
         public static string FriendsMessageUrlCommand = "/v1/api/talk/friends/message/default/send";
 
         #endregion
+
+        #region NAVER API
+        /// <summary>
+        /// 채널 서비스 ID
+        /// </summary>
+        public static string Channel_ServiceID = "ncp:kkobizmsg:kr:3130732:stec";
+
+        /// <summary>
+        /// API 인증키 - Access Key
+        /// </summary>
+        public static string Channel_AccessKey = "6BEiZ5D8aobuw3qA6P2w";
+
+        /// <summary>
+        /// API 인증키 - Secret Key
+        /// </summary>
+        public static string Channel_SecreatKey = "NNDCeHCbX4y31IfvwQePgspfE9xDJFzJRWNwlNln";
+
+        /// <summary>
+        /// API URL
+        /// </summary>
+        //public static string Channel_APIURL = "https://sens.apigw.ntruss.com";
+
+        //public static string Channel_MessageURL = "https://sens.apigw.ntruss.com/alimtalk/v2/services/";
+
+        /// <summary>
+        /// 시그니처 생성 COMMAND
+        /// </summary>
+        public static string SearchChannelCommand = $"/alimtalk/v2/services/{Channel_ServiceID}/messages";
+
+        /// <summary>
+        /// 알람톡 POST URL
+        /// </summary>
+        public static string Channel_MessageURL = "https://sens.apigw.ntruss.com/alimtalk/v2/services/ncp:kkobizmsg:kr:3130732:stec/messages";
+
+        #endregion
     }
 }

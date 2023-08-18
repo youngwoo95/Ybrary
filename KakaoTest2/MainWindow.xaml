@@ -61,6 +61,7 @@
 
             <TextBox x:Name="txtFriendsMessage" Grid.Column="0"/>
             <Button x:Name="btnSendFriendsMessage" Grid.Column="1" Content="친구에게 메시지 보내기" Click="btnSendFriendsMessage_Click"/>
+            <Button x:Name="btnGetChannel" Grid.Column="2" Content="채널메시지보내기" Click="btnGetChannel_Click"/>
         </Grid>
 
     </StackPanel>

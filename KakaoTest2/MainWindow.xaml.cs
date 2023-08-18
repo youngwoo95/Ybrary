@@ -147,5 +147,10 @@ namespace KakaoTest2
             Comm.SendFriendsMessage(friendslist[1].UUID, txtFriendsMessage.Text);
             txtFriendsMessage.Clear();
         }
+
+        private void btnGetChannel_Click(object sender, RoutedEventArgs e)
+        {
+            Comm.SendChannelMessage("01091189308","김용우","테스트데이터");
+        }
     }
 }

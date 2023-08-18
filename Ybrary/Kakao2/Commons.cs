@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
@@ -382,10 +383,132 @@ namespace Ybrary.Kakao2
                 Console.WriteLine("실패");
                 return false;
             }
-            
+        }
 
 
+        /*
+         [참고사이트]
+         https://sosopro.tistory.com/210 SENS SMS 문자보내기
+         https://sens.apigw.ntruss.com/apigw/swagger-ui?productId=plv61henn8&apiId=v5ct56inz5&stageId=34jilvhp11&region=KR#/v2/post_services__serviceId__messages SENS Swagger UI
+         https://api.ncloud-docs.com/docs/ko/ai-application-service-sens-alimtalkv2 SENS 알람톡 래퍼런스
 
+         [원본데이터]
+         {
+            "templateCode": "15770722",
+            "plusFriendId": "@stecsystem",
+            "messages": [
+            {
+                "countryCode": "82",
+                "to": "01091189308",
+                "content": "테스트(test) 이름 님의 메시지 테스트내용입니다",
+                "buttons":[
+                        {
+                            "type":"WL",
+                            "name":"URL링크",
+                            "linkMobile":"https://www.s-tec.co.kr",
+                            "linkPc":"https://www.s-tec.co.kr"
+                        }
+                    ]
+            }
+            ]
+        }
+        */
+        /// <summary>
+        /// 채널 알림톡 보내기
+        /// </summary>
+        /// <param name="phonenumber"></param>
+        /// <param name="name"></param>
+        /// <param name="content"></param>
+        public void SendChannelMessage(string phonenumber, string name, string content)
+        {
+            string time = DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
+
+            string space = " ";
+            string newLine = "\n";
+            string method = "POST";
+            string url = Values.SearchChannelCommand;
+
+            string message = new StringBuilder()
+                .Append(method)
+                .Append(space)
+                .Append(url)
+                .Append(newLine)
+                .Append(time)
+                .Append(newLine)
+                .Append(Values.Channel_AccessKey)
+                .ToString();
+
+            string encodeBase64String = String.Empty;
+            byte[] secretKey = Encoding.UTF8.GetBytes(Values.Channel_SecreatKey);
+            using (HMACSHA256 hmac = new HMACSHA256(secretKey))
+            {
+                hmac.Initialize();
+                byte[] bytes = Encoding.UTF8.GetBytes(message);
+                byte[] rawHmac = hmac.ComputeHash(bytes);
+                encodeBase64String = Convert.ToBase64String(rawHmac); // 시그니처 키 발급완료
+            }
+
+            Console.WriteLine($"생성한 시그니처 키 : {encodeBase64String}");
+
+            //////////////////////////////////////////////////////////////////////////
+            string strurl = Values.Channel_MessageURL;
+
+            var request = (HttpWebRequest)WebRequest.Create(strurl);
+       
+            request.Method = "POST";
+            request.ContentType = "application/json; charset=utf-8";
+            request.Headers.Add("x-ncp-apigw-timestamp", time);
+            request.Headers.Add("x-ncp-iam-access-key", Values.Channel_AccessKey);
+            request.Headers.Add("x-ncp-apigw-signature-v2", encodeBase64String);
+
+
+            JObject btnobj = new JObject();
+            btnobj.Add("type", "WL");
+            btnobj.Add("name", "URL링크");
+            btnobj.Add("linkMobile", "https://www.s-tec.co.kr");
+            btnobj.Add("linkPc", "https://www.s-tec.co.kr");
+
+            JArray arr = new JArray();
+            arr.Add(btnobj);
+
+            JObject messageobj = new JObject();
+            messageobj.Add("countryCode", "82");
+            messageobj.Add("to", $"{phonenumber}");
+            messageobj.Add("content", $"테스트(test) {name} 님의 메시지 {content}");
+            messageobj.Add("buttons", arr);
+
+            arr = new JArray();
+            arr.Add(messageobj);
+
+
+            JObject result = new JObject();
+            result.Add("templateCode", "15770722");
+            result.Add("plusFriendId", "@stecsystem");
+            result.Add("messages", arr);
+
+            string PostData = result.ToString();
+
+            var data = Encoding.UTF8.GetBytes(PostData);
+
+             using (var stream = request.GetRequestStream())
+             {
+                 stream.Write(data, 0, data.Length);
+             }
+
+             string responseText = string.Empty;
+             using (HttpWebResponse resp = (HttpWebResponse)request.GetResponse())
+             {
+                 HttpStatusCode status = resp.StatusCode;
+                 Console.WriteLine(status);
+
+                 Stream restStream = resp.GetResponseStream();
+                 using(StreamReader sr = new StreamReader(restStream))
+                 {
+                     responseText = sr.ReadToEnd();
+                 }
+             }
+
+         Console.WriteLine(responseText);
         }
     }
 }
